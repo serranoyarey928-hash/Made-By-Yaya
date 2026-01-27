@@ -85,6 +85,24 @@
       margin: 0.3rem 0;
     }
 
+    .paypal-btn {
+      margin-top: 0.5rem;
+      padding: 0.6rem 1rem;
+      background: #d63384;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s ease;
+    }
+
+    .paypal-btn:hover {
+      background: #9f1853;
+    }
+
     .about {
       background: #ffdeeb;
       padding: 2rem 1rem;
@@ -98,26 +116,22 @@
       color: #fff;
     }
 
-    paypal-add-to-cart-button, paypal-cart-button {
-      margin-top: 0.5rem;
-      padding: 0.6rem 1rem;
-      font-size: 1rem;
+    .checkout-btn {
+      display: block;
+      margin: 1rem auto;
+      padding: 0.7rem 1.5rem;
       background: #d63384;
       color: #fff;
-      border: none;
+      text-align: center;
+      font-size: 1rem;
       border-radius: 8px;
-      cursor: pointer;
+      text-decoration: none;
+      width: 200px;
       transition: background 0.2s ease;
-      display: inline-block;
     }
 
-    paypal-add-to-cart-button:hover, paypal-cart-button:hover {
+    .checkout-btn:hover {
       background: #9f1853;
-    }
-
-    /* Hide PayPal quantity input */
-    input[name="quantity"], .paypal-qty-box {
-      display: none !important;
     }
   </style>
 </head>
@@ -133,15 +147,6 @@
   <p>Affordable, stackable bracelets made with love 💖</p>
 </section>
 
-<!-- PAYPAL SCRIPT (only once!) -->
-<script src="https://www.paypalobjects.com/ncp/cart/cart.js" data-merchant-id="ZP8EYTED3UD9L"></script>
-
-<!-- VIEW CART / CHECKOUT BUTTON (only once!) -->
-<paypal-cart-button data-id="pp-view-cart"></paypal-cart-button>
-<script>
-  cartPaypal.Cart({ id: "pp-view-cart" })
-</script>
-
 <section class="shop">
   <h2>Shop Bracelets</h2>
 
@@ -156,8 +161,55 @@
       <p>Available in different shades of blue 💙</p>
 
       <!-- Blue Add to Cart -->
-      <paypal-add-to-cart-button data-id="TJL82BCXNKC3L"></paypal-add-to-cart-button>
-      <script>
-        cartPaypal.AddToCart({ id: "TJL82BCXNKC3L" })
-      </script>
-    </div
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+        <input type="hidden" name="cmd" value="_cart">
+        <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL_HERE">
+        <input type="hidden" name="item_name" value="Blue Stackable Bracelet">
+        <input type="hidden" name="amount" value="3.25">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="add" value="1">
+        <input type="submit" class="paypal-btn" value="Add to Cart">
+      </form>
+    </div>
+
+    <!-- PINK BRACELET -->
+    <div class="product">
+      <h3>Light Pink Stackable Bracelet</h3>
+      <img src="https://github.com/serranoyarey928-hash/Made-By-Yaya/blob/main/thumbnail.png?raw=true" alt="Light Pink Stackable Bracelet" width="220">
+      <p>$3.25</p>
+      <p>Handmade with glass beads and stretchy cord.</p>
+      <p>Available in different light pinks 🌸</p>
+
+      <!-- Pink Add to Cart -->
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+        <input type="hidden" name="cmd" value="_cart">
+        <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL_HERE">
+        <input type="hidden" name="item_name" value="Pink Stackable Bracelet">
+        <input type="hidden" name="amount" value="3.25">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="hidden" name="add" value="1">
+        <input type="submit" class="paypal-btn" value="Add to Cart">
+      </form>
+    </div>
+
+  </div>
+
+  <!-- VIEW CART / CHECKOUT BUTTON -->
+  <a href="https://www.paypal.com/cart" class="checkout-btn" target="_blank">View Cart / Checkout</a>
+
+</section>
+
+<section class="about">
+  <h2>About</h2>
+  <p>
+    Hi, I’m Yaya 💕  
+    I hand‑make each bracelet with care, focusing on color, comfort, and style.
+  </p>
+</section>
+
+<footer>
+  <p>© Made by Yaya</p>
+</footer>
+
+</body>
+</html>
