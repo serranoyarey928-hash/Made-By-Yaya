@@ -114,6 +114,11 @@
     paypal-add-to-cart-button:hover, paypal-cart-button:hover {
       background: #9f1853;
     }
+
+    /* Hide PayPal quantity input */
+    input[name="quantity"], .paypal-qty-box {
+      display: none !important;
+    }
   </style>
 </head>
 <body>
@@ -131,7 +136,7 @@
 <!-- PAYPAL SCRIPT (only once!) -->
 <script src="https://www.paypalobjects.com/ncp/cart/cart.js" data-merchant-id="ZP8EYTED3UD9L"></script>
 
-<!-- VIEW CART / CHECKOUT (once!) -->
+<!-- VIEW CART / CHECKOUT BUTTON (only once!) -->
 <paypal-cart-button data-id="pp-view-cart"></paypal-cart-button>
 <script>
   cartPaypal.Cart({ id: "pp-view-cart" })
@@ -155,43 +160,4 @@
       <script>
         cartPaypal.AddToCart({ id: "TJL82BCXNKC3L" })
       </script>
-    </div>
-
-    <!-- PINK BRACELET -->
-    <div class="product">
-      <h3>Light Pink Stackable Bracelet</h3>
-      <img src="https://github.com/serranoyarey928-hash/Made-By-Yaya/blob/main/thumbnail.png?raw=true" alt="Light Pink Stackable Bracelet" width="220">
-      <p>$3.25</p>
-      <p>Handmade with glass beads and stretchy cord.</p>
-      <p>Available in different light pinks 🌸</p>
-
-      <!-- Pink Add to Cart -->
-      <paypal-add-to-cart-button data-id="TZR4Q39FXBYUJ"></paypal-add-to-cart-button>
-      <script>
-        cartPaypal.AddToCart({ id: "TZR4Q39FXBYUJ" })
-      </script>
-    </div>
-
-  </div>
-</section>
-
-<section class="about">
-  <h2>About</h2>
-  <p>
-    Hi, I’m Yaya 💕  
-    I hand-make each bracelet with care, focusing on color, comfort, and style.
-  </p>
-</section>
-
-<footer>
-  <p>© Made by Yaya</p>
-</footer>
-
-</body>
-</html>
-<style>
-/* Hide the quantity input field for PayPal Add to Cart buttons */
-input[name="quantity"], .paypal-qty-box {
-  display: none !important;
-}
-</style>
+    </div
