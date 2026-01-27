@@ -5,6 +5,115 @@
   <title>Made by Yaya</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fff0f6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #ffdeeb;
+      border-bottom: 2px solid #ff99cc;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #d63384;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      color: #9f1853;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: #ffe6f0;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: #d63384;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+    }
+
+    .shop {
+      padding: 2rem 1rem;
+    }
+
+    .shop h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #d63384;
+    }
+
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .product {
+      background: #fff;
+      border: 2px solid #ff99cc;
+      border-radius: 15px;
+      padding: 1rem;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .product h3 {
+      color: #d63384;
+      margin-bottom: 0.5rem;
+    }
+
+    .product p {
+      margin: 0.3rem 0;
+    }
+
+    .about {
+      background: #ffdeeb;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #ff99cc;
+      color: #fff;
+    }
+
+    input[type="submit"], paypal-add-to-cart-button {
+      margin-top: 0.5rem;
+      padding: 0.6rem 1rem;
+      font-size: 1rem;
+      background: #d63384;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    input[type="submit"]:hover, paypal-add-to-cart-button:hover {
+      background: #9f1853;
+    }
+  </style>
 </head>
 <body>
 
@@ -12,6 +121,13 @@
   <h1>Made by Yaya</h1>
   <p class="tagline">Handmade Glass Bead Bracelets 💕</p>
 </header>
+
+<!-- VIEW CART / CHECKOUT BUTTON (once!) -->
+<script src="https://www.paypalobjects.com/ncp/cart/cart.js" data-merchant-id="ZP8EYTED3UD9L"></script>
+<paypal-cart-button data-id="pp-view-cart"></paypal-cart-button>
+<script>
+  cartPaypal.Cart({ id: "pp-view-cart" })
+</script>
 
 <section class="hero">
   <h2>Simple • Bold • Handmade</h2>
@@ -26,43 +142,31 @@
     <!-- BLUE BRACELET -->
     <div class="product">
       <h3>Blue Wider Stackable Bracelet</h3>
-
-      <img 
-        src="https://github.com/serranoyarey928-hash/Made-By-Yaya/blob/main/thumbnail.jpg?raw=true"
-        alt="Blue Wider Stackable Bracelet"
-        width="220"
-      >
-
-      <p class="price">$3.25</p>
+      <img src="https://github.com/serranoyarey928-hash/Made-By-Yaya/blob/main/thumbnail.jpg?raw=true" alt="Blue Wider Stackable Bracelet" width="220">
+      <p>$3.25</p>
       <p>Handmade with glass beads and stretchy cord.</p>
       <p>Available in different shades of blue 💙</p>
 
-      <!-- PayPal Checkout Button -->
-      <a 
-        href="https://www.paypal.com/ncp/payment/VKB69PLVM8GFC"
-        class="buy"
-        target="_blank"
-      >
-        Buy Now
-      </a>
+      <!-- Blue Add to Cart -->
+      <paypal-add-to-cart-button data-id="TJL82BCXNKC3L"></paypal-add-to-cart-button>
+      <script>
+        cartPaypal.AddToCart({ id: "TJL82BCXNKC3L" })
+      </script>
     </div>
 
     <!-- PINK BRACELET -->
     <div class="product">
       <h3>Light Pink Stackable Bracelet</h3>
-
-      <img 
-        src="https://github.com/serranoyarey928-hash/Made-By-Yaya/blob/main/thumbnail.png?raw=true"
-        alt="Light Pink Stackable Bracelet"
-        width="220"
-      >
-
-      <p class="price">$3.25</p>
+      <img src="https://github.com/serranoyarey928-hash/Made-By-Yaya/blob/main/thumbnail.png?raw=true" alt="Light Pink Stackable Bracelet" width="220">
+      <p>$3.25</p>
       <p>Handmade with glass beads and stretchy cord.</p>
       <p>Available in different light pinks 🌸</p>
 
-      <!-- PayPal button will be added later -->
-      <p class="coming-soon">Checkout coming soon 💕</p>
+      <!-- Pink Add to Cart -->
+      <paypal-add-to-cart-button data-id="TZR4Q39FXBYUJ"></paypal-add-to-cart-button>
+      <script>
+        cartPaypal.AddToCart({ id: "TZR4Q39FXBYUJ" })
+      </script>
     </div>
 
   </div>
