@@ -82,8 +82,8 @@
     #paypal-button-container { margin-top: 1rem; text-align: center; }
   </style>
 
-  <!-- PayPal SDK - add your Live Client ID below -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AdoVNh2evPCd2XxMJ0xDFGgQogxceVAmCjBGe8j74Z1IwhfFCRFfhF2KJmymSiwhgyLZjDhF5T-is4ug&currency=USD"></script>
+  <!-- PayPal SDK - replace YOUR_LIVE_CLIENT_ID with your real ID -->
+  <script src="https://www.paypal.com/sdk/js?client-idAdoVNh2evPCd2XxMJ0xDFGgQogxceVAmCjBGe8j74Z1IwhfFCRFfhF2KJmymSiwhgyLZjDhF5T-is4ug&currency=USD"></script>
 </head>
 <body>
 
@@ -151,6 +151,7 @@
 </footer>
 
 <script>
+  // Cart logic
   const cart = {};
 
   function addToCart(name, price, key) {
@@ -188,7 +189,7 @@
     document.getElementById('cart-total').textContent = total.toFixed(2);
   }
 
-  // Render PayPal Button ONCE on page load
+  // PayPal Buttons
   paypal.Buttons({
     style: {
       layout: 'vertical',
@@ -220,6 +221,7 @@
       });
     }
   }).render('#paypal-button-container');
+
 </script>
 
 </body>
