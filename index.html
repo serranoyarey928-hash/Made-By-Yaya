@@ -78,11 +78,7 @@
 
     .cart-total { text-align: right; font-weight: bold; color: #d63384; margin-top: 0.5rem; font-size: 1.1rem; }
 
-    /* PayPal Checkout Button */
-    #paypal-checkout-button-container {
-      margin-top: 1rem;
-      text-align: center;
-    }
+    #paypal-checkout-button-container { margin-top: 1rem; text-align: center; }
   </style>
 
   <!-- PayPal SDK -->
@@ -135,10 +131,8 @@
     <ul id="cart-items" class="cart-items"></ul>
     <p class="cart-total">Total: $<span id="cart-total">0.00</span></p>
 
-    <!-- Visible Checkout & Pay Button -->
+    <!-- Visible Checkout Button -->
     <button id="checkout-pay-btn" class="btn">Checkout & Pay</button>
-
-    <!-- PayPal container -->
     <div id="paypal-checkout-button-container"></div>
   </div>
 
@@ -194,7 +188,7 @@
     document.getElementById('cart-total').textContent = total.toFixed(2);
   }
 
-  // Visible Checkout button triggers PayPal popup
+  // Visible Checkout button opens PayPal popup
   document.getElementById('checkout-pay-btn').addEventListener('click', function() {
     const purchaseUnits = [];
     for (const key in cart) {
@@ -205,7 +199,6 @@
       });
     }
 
-    // Render PayPal Buttons inside the container
     paypal.Buttons({
       createOrder: function(data, actions) {
         return actions.order.create({ purchase_units: purchaseUnits });
@@ -219,9 +212,7 @@
       }
     }).render('#paypal-checkout-button-container');
   });
-
 </script>
 
 </body>
 </html>
-
