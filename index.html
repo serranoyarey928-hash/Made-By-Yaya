@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Made by Yaya</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,126 +13,36 @@
       padding: 0;
     }
 
-    header {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: #ffdeeb;
-      border-bottom: 2px solid #ff99cc;
-    }
+    header { text-align: center; padding: 2rem 1rem; background: #ffdeeb; border-bottom: 2px solid #ff99cc; }
+    h1 { margin: 0; font-size: 2.5rem; color: #d63384; }
+    .tagline { font-size: 1.2rem; color: #9f1853; }
 
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      color: #d63384;
-    }
+    .hero { text-align: center; padding: 2rem 1rem; background: #ffe6f0; }
+    .hero h2 { font-size: 2rem; margin-bottom: 0.5rem; color: #d63384; }
+    .hero p { font-size: 1.2rem; }
 
-    .tagline {
-      font-size: 1.2rem;
-      color: #9f1853;
-    }
+    .shop { padding: 2rem 1rem; }
+    .shop h2 { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #d63384; }
 
-    .hero {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: #ffe6f0;
-    }
+    .products { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
+    .product { background: #fff; border: 2px solid #ff99cc; border-radius: 15px; padding: 1rem; width: 250px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .product h3 { color: #d63384; margin-bottom: 0.5rem; }
+    .product p { margin: 0.3rem 0; }
 
-    .hero h2 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      color: #d63384;
-    }
+    .paypal-btn { margin-top: 0.5rem; padding: 0.6rem 1rem; background: #d63384; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; display: inline-block; transition: background 0.2s ease; }
+    .paypal-btn:hover { background: #9f1853; }
 
-    .hero p {
-      font-size: 1.2rem;
-    }
+    .about { background: #ffdeeb; padding: 2rem 1rem; text-align: center; }
+    footer { text-align: center; padding: 1rem; background: #ff99cc; color: #fff; }
 
-    .shop {
-      padding: 2rem 1rem;
-    }
+    .checkout-btn { display: block; margin: 1rem auto; padding: 0.7rem 1.5rem; background: #d63384; color: #fff; text-align: center; font-size: 1rem; border-radius: 8px; text-decoration: none; width: 200px; transition: background 0.2s ease; }
+    .checkout-btn:hover { background: #9f1853; }
 
-    .shop h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: #d63384;
-    }
-
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 2rem;
-    }
-
-    .product {
-      background: #fff;
-      border: 2px solid #ff99cc;
-      border-radius: 15px;
-      padding: 1rem;
-      width: 250px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .product h3 {
-      color: #d63384;
-      margin-bottom: 0.5rem;
-    }
-
-    .product p {
-      margin: 0.3rem 0;
-    }
-
-    .paypal-btn {
-      margin-top: 0.5rem;
-      padding: 0.6rem 1rem;
-      background: #d63384;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.2s ease;
-    }
-
-    .paypal-btn:hover {
-      background: #9f1853;
-    }
-
-    .about {
-      background: #ffdeeb;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: #ff99cc;
-      color: #fff;
-    }
-
-    .checkout-btn {
-      display: block;
-      margin: 1rem auto;
-      padding: 0.7rem 1.5rem;
-      background: #d63384;
-      color: #fff;
-      text-align: center;
-      font-size: 1rem;
-      border-radius: 8px;
-      text-decoration: none;
-      width: 200px;
-      transition: background 0.2s ease;
-    }
-
-    .checkout-btn:hover {
-      background: #9f1853;
-    }
+    .cart-info { text-align: center; font-size: 1.1rem; margin: 1rem 0; color: #d63384; }
   </style>
+
+  <!-- PayPal JavaScript SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD&components=buttons"></script>
 </head>
 <body>
 
@@ -150,26 +59,21 @@
 <section class="shop">
   <h2>Shop Bracelets</h2>
 
+  <div class="cart-info">
+    Cart: <span id="cart-count">0</span> item(s)
+  </div>
+
   <div class="products">
 
     <!-- BLUE BRACELET -->
     <div class="product">
-      <h3>Blue Wider Stackable Bracelet</h3>
-      <img src="https://github.com/serranoyarey928-hash/Made-By-Yaya/blob/main/thumbnail.jpg?raw=true" alt="Blue Wider Stackable Bracelet" width="220">
+      <h3>Blue Stackable Bracelet</h3>
+      <img src="https://github.com/serranoyarey928-hash/Made-By-Yaya/blob/main/thumbnail.jpg?raw=true" alt="Blue Stackable Bracelet" width="220">
       <p>$3.25</p>
       <p>Handmade with glass beads and stretchy cord.</p>
       <p>Available in different shades of blue 💙</p>
-
-      <!-- Blue Add to Cart -->
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-        <input type="hidden" name="cmd" value="_cart">
-        <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL_HERE">
-        <input type="hidden" name="item_name" value="Blue Stackable Bracelet">
-        <input type="hidden" name="amount" value="3.25">
-        <input type="hidden" name="currency_code" value="USD">
-        <input type="hidden" name="add" value="1">
-        <input type="submit" class="paypal-btn" value="Add to Cart">
-      </form>
+      <p><strong>Only 3 in stock!</strong></p>
+      <div id="paypal-button-blue"></div>
     </div>
 
     <!-- PINK BRACELET -->
@@ -179,30 +83,21 @@
       <p>$3.25</p>
       <p>Handmade with glass beads and stretchy cord.</p>
       <p>Available in different light pinks 🌸</p>
-
-      <!-- Pink Add to Cart -->
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-        <input type="hidden" name="cmd" value="_cart">
-        <input type="hidden" name="business" value="YOUR_PAYPAL_EMAIL_HERE">
-        <input type="hidden" name="item_name" value="Pink Stackable Bracelet">
-        <input type="hidden" name="amount" value="3.25">
-        <input type="hidden" name="currency_code" value="USD">
-        <input type="hidden" name="add" value="1">
-        <input type="submit" class="paypal-btn" value="Add to Cart">
-      </form>
+      <p><strong>Only 3 in stock!</strong></p>
+      <div id="paypal-button-pink"></div>
     </div>
 
   </div>
 
-  <!-- VIEW CART / CHECKOUT BUTTON -->
-  <a href="https://www.paypal.com/cart" class="checkout-btn" target="_blank">View Cart / Checkout</a>
+  <!-- View Cart / Checkout -->
+  <a href="https://www.paypal.com/cart" target="_blank" class="checkout-btn">View Cart / Checkout</a>
 
 </section>
 
 <section class="about">
   <h2>About</h2>
   <p>
-    Hi, I’m Yaya 💕  
+    Hi, I’m Yaya 💕<br>
     I hand‑make each bracelet with care, focusing on color, comfort, and style.
   </p>
 </section>
@@ -210,6 +105,54 @@
 <footer>
   <p>© Made by Yaya</p>
 </footer>
+
+<script>
+  let cartCount = 0;
+
+  function updateCart() {
+    document.getElementById('cart-count').textContent = cartCount;
+  }
+
+  // BLUE BRACELET BUTTON
+  paypal.Buttons({
+    style: { layout: 'vertical', color: 'pink', shape: 'pill', label: 'add to cart' },
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: '3.25' },
+          description: 'Blue Stackable Bracelet'
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        cartCount++;
+        updateCart();
+        alert('Added to cart: ' + details.purchase_units[0].description);
+      });
+    }
+  }).render('#paypal-button-blue');
+
+  // PINK BRACELET BUTTON
+  paypal.Buttons({
+    style: { layout: 'vertical', color: 'pink', shape: 'pill', label: 'add to cart' },
+    createOrder: function(data, actions) {
+      return actions.order.create({
+        purchase_units: [{
+          amount: { value: '3.25' },
+          description: 'Pink Stackable Bracelet'
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      return actions.order.capture().then(function(details) {
+        cartCount++;
+        updateCart();
+        alert('Added to cart: ' + details.purchase_units[0].description);
+      });
+    }
+  }).render('#paypal-button-pink');
+</script>
 
 </body>
 </html>
