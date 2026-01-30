@@ -35,7 +35,6 @@
     footer { text-align: center; padding: 1rem; background: #ff99cc; color: #fff; }
 
     .cart {
-      <div id="paypal-button-container"></div>
       background: linear-gradient(135deg, #ffe6f0, #fff0f6);
       border: 2px solid #ff99cc;
       border-radius: 20px;
@@ -68,7 +67,7 @@
   </style>
 
   <!-- PayPal SDK -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AdoVNh2evPCd2XxMJ0xDFGgQogxceVAmCjBGe8j74Z1IwhfFCRFfhF2KJmymSiwhgyLZjDhF5T-is4ug&currency=USD"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_LIVE_CLIENT_ID&currency=USD"></script>
 </head>
 <body>
 
@@ -131,6 +130,7 @@
 </footer>
 
 <script>
+  // CART LOGIC
   const cart = {};
 
   function addToCart(name, price, key) {
@@ -166,7 +166,7 @@
     document.getElementById('cart-total').textContent = total.toFixed(2);
   }
 
-  // Render PayPal button after page load
+  // PAYPAL BUTTON INLINE
   window.onload = function() {
     paypal.Buttons({
       style: {
@@ -180,6 +180,7 @@
           alert('Your cart is empty!');
           return actions.reject();
         }
+
         const purchaseUnits = [];
         for (const key in cart) {
           const item = cart[key];
@@ -200,26 +201,6 @@
     }).render('#paypal-button-container');
   };
 </script>
-  <script>
-  window.onload = function() {
-    paypal.Buttons({
-      createOrder: function(data, actions) {
-        // For now, just a fixed amount to test the button
-        return actions.order.create({
-          purchase_units: [{
-            amount: {
-              value: '3.25' // simple test amount
-            }
-          }]
-        });
-      },
-      onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-          alert('Thanks for your purchase, ' + details.payer.name.given_name + '!');
-        });
-      }
-    }).render('#paypal-button-container');
-  };
-</script>
+
 </body>
 </html>
