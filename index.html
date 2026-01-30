@@ -12,7 +12,6 @@
       margin: 0;
       padding: 0;
     }
-
     header { text-align: center; padding: 2rem 1rem; background: #ffdeeb; border-bottom: 2px solid #ff99cc; }
     h1 { margin: 0; font-size: 2.5rem; color: #d63384; }
     .tagline { font-size: 1.2rem; color: #9f1853; }
@@ -35,7 +34,6 @@
     .about { background: #ffdeeb; padding: 2rem 1rem; text-align: center; }
     footer { text-align: center; padding: 1rem; background: #ff99cc; color: #fff; }
 
-    /* Boutique Cart */
     .cart {
       background: linear-gradient(135deg, #ffe6f0, #fff0f6);
       border: 2px solid #ff99cc;
@@ -45,21 +43,9 @@
       max-width: 400px;
       box-shadow: 0 8px 15px rgba(0,0,0,0.2);
     }
-    .cart h3 {
-      color: #d63384;
-      margin-bottom: 1rem;
-      text-align: center;
-      font-size: 1.8rem;
-    }
+    .cart h3 { color: #d63384; margin-bottom: 1rem; text-align: center; font-size: 1.8rem; }
     .cart-items { list-style: none; padding: 0; margin: 0; }
-    .cart-items li {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #ff99cc;
-      font-size: 1rem;
-    }
+    .cart-items li { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid #ff99cc; font-size: 1rem; }
     .cart-items li span { margin-left: 0.5rem; font-weight: bold; color: #d63384; }
     .remove-btn {
       background: #ff99cc;
@@ -75,15 +61,13 @@
       transition: background 0.2s ease;
     }
     .remove-btn:hover { background: #d63384; }
-
     .cart-total { text-align: right; font-weight: bold; color: #d63384; margin-top: 0.5rem; font-size: 1.1rem; }
 
-    /* PayPal button container */
     #paypal-button-container { margin-top: 1rem; text-align: center; }
   </style>
 
-  <!-- PayPal SDK - replace YOUR_LIVE_CLIENT_ID with your real ID -->
-  <script src="https://www.paypal.com/sdk/js?client-idAdoVNh2evPCd2XxMJ0xDFGgQogxceVAmCjBGe8j74Z1IwhfFCRFfhF2KJmymSiwhgyLZjDhF5T-is4ug&currency=USD"></script>
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AdoVNh2evPCd2XxMJ0xDFGgQogxceVAmCjBGe8j74Z1IwhfFCRFfhF2KJmymSiwhgyLZjDhF5T-is4ug&currency=USD"></script>
 </head>
 <body>
 
@@ -101,8 +85,7 @@
   <h2>Shop Bracelets</h2>
 
   <div class="products">
-
-    <!-- BLUE BRACELET -->
+    <!-- Blue Bracelet -->
     <div class="product">
       <h3>Blue Stackable Bracelet</h3>
       <img src="https://github.com/serranoyarey928-hash/Made-By-Yaya/blob/main/thumbnail.jpg?raw=true" alt="Blue Bracelet" width="220">
@@ -113,7 +96,7 @@
       <button class="btn" onclick="addToCart('Blue Stackable Bracelet', 3.25, 'blue')">Add to Cart</button>
     </div>
 
-    <!-- PINK BRACELET -->
+    <!-- Pink Bracelet -->
     <div class="product">
       <h3>Light Pink Stackable Bracelet</h3>
       <img src="https://github.com/serranoyarey928-hash/Made-By-Yaya/blob/main/thumbnail.png?raw=true" alt="Pink Bracelet" width="220">
@@ -123,10 +106,9 @@
       <p><strong>Only 3 in stock!</strong></p>
       <button class="btn" onclick="addToCart('Pink Stackable Bracelet', 3.25, 'pink')">Add to Cart</button>
     </div>
-
   </div>
 
-  <!-- CART DISPLAY -->
+  <!-- Cart -->
   <div class="cart">
     <h3>Your Cart</h3>
     <ul id="cart-items" class="cart-items"></ul>
@@ -140,10 +122,7 @@
 
 <section class="about">
   <h2>About</h2>
-  <p>
-    Hi, I’m Yaya 💕<br>
-    I hand‑make each bracelet with care, focusing on color, comfort, and style.
-  </p>
+  <p>Hi, I’m Yaya 💕<br>I hand‑make each bracelet with care, focusing on color, comfort, and style.</p>
 </section>
 
 <footer>
@@ -151,12 +130,11 @@
 </footer>
 
 <script>
-  // Cart logic
   const cart = {};
 
   function addToCart(name, price, key) {
     if (!cart[key]) cart[key] = { name, price, quantity: 0 };
-    if(cart[key].quantity < 3){
+    if (cart[key].quantity < 3) {
       cart[key].quantity++;
       renderCart();
     } else {
@@ -173,7 +151,6 @@
     const cartItems = document.getElementById('cart-items');
     cartItems.innerHTML = '';
     let total = 0;
-
     for (const key in cart) {
       const item = cart[key];
       total += item.price * item.quantity;
@@ -185,43 +162,42 @@
       `;
       cartItems.appendChild(li);
     }
-
     document.getElementById('cart-total').textContent = total.toFixed(2);
   }
 
-  // PayPal Buttons
-  paypal.Buttons({
-    style: {
-      layout: 'vertical',
-      color: 'pink',
-      shape: 'pill',
-      label: 'pay'
-    },
-    createOrder: function(data, actions) {
-      if (Object.keys(cart).length === 0) {
-        alert('Your cart is empty!');
-        return actions.reject();
-      }
-
-      const purchaseUnits = [];
-      for (const key in cart) {
-        const item = cart[key];
-        purchaseUnits.push({
-          description: item.name,
-          amount: { value: (item.price * item.quantity).toFixed(2) }
+  // Render PayPal button after page load
+  window.onload = function() {
+    paypal.Buttons({
+      style: {
+        layout: 'vertical',
+        color: 'pink',
+        shape: 'pill',
+        label: 'pay'
+      },
+      createOrder: function(data, actions) {
+        if (Object.keys(cart).length === 0) {
+          alert('Your cart is empty!');
+          return actions.reject();
+        }
+        const purchaseUnits = [];
+        for (const key in cart) {
+          const item = cart[key];
+          purchaseUnits.push({
+            description: item.name,
+            amount: { value: (item.price * item.quantity).toFixed(2) }
+          });
+        }
+        return actions.order.create({ purchase_units: purchaseUnits });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('Thank you for your purchase!');
+          for (const key in cart) delete cart[key];
+          renderCart();
         });
       }
-      return actions.order.create({ purchase_units: purchaseUnits });
-    },
-    onApprove: function(data, actions) {
-      return actions.order.capture().then(function(details) {
-        alert('Thank you for your purchase!');
-        for (const key in cart) delete cart[key];
-        renderCart();
-      });
-    }
-  }).render('#paypal-button-container');
-
+    }).render('#paypal-button-container');
+  };
 </script>
 
 </body>
