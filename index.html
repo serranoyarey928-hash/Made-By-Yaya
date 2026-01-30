@@ -163,10 +163,10 @@
       `;
       cartItems.appendChild(li);
     }
-    document.getElementById('cart-total').textContent = total.toFixed(2);
+    document.getElementById('cart-total').textContent = (total + 4.25).toFixed(2);
   }
 
-  // PAYPAL BUTTON INLINE
+  // PAYPAL BUTTON INLINE WITH SHIPPING
   window.onload = function() {
     paypal.Buttons({
       style: {
@@ -181,19 +181,32 @@
           return actions.reject();
         }
 
-        const purchaseUnits = [];
+        // Calculate total
+        let total = 0;
         for (const key in cart) {
-          const item = cart[key];
-          purchaseUnits.push({
-            description: item.name,
-            amount: { value: (item.price * item.quantity).toFixed(2) }
-          });
+          total += cart[key].price * cart[key].quantity;
         }
-        return actions.order.create({ purchase_units: purchaseUnits });
+
+        const shipping = 4.25;
+        const totalWithShipping = total + shipping;
+
+        return actions.order.create({
+          purchase_units: [{
+            description: "Bracelets from Made by Yaya",
+            amount: {
+              value: totalWithShipping.toFixed(2),
+              breakdown: {
+                item_total: { value: total.toFixed(2), currency_code: 'USD' },
+                shipping: { value: shipping.toFixed(2), currency_code: 'USD' }
+              }
+            }
+          }]
+        });
       },
       onApprove: function(data, actions) {
         return actions.order.capture().then(function(details) {
           alert('Thank you for your purchase!');
+          // Clear cart
           for (const key in cart) delete cart[key];
           renderCart();
         });
